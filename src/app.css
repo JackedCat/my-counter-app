@@ -73,7 +73,7 @@ body {
 }
 
 .value {
-  font-size: clamp(56px, 10vw, 72px);
+  font-size: clamp(56px, 14vw, 104px);
   font-weight: 600;
   text-align: center;
   letter-spacing: -0.04em;
