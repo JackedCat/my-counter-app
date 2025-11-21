@@ -4,6 +4,20 @@
   const STORAGE_KEY = 'counter:local'
   const STORAGE_LIMIT = 'counter:limit'
   const STORAGE_STEP = 'counter:step'
+  const STORAGE_THEME = 'counter:theme'
+
+  const THEMES = [
+    { id: 'sky', label: 'Sky', color: '#05b3f9' },
+    { id: 'green', label: 'Green', color: '#0aa858' },
+    { id: 'orange', label: 'Orange', color: '#f58619' },
+    { id: 'lavender', label: 'Lavender', color: '#c593f9' },
+    { id: 'teal', label: 'Teal', color: '#12bfd4' },
+    { id: 'coral', label: 'Coral', color: '#f65071' },
+    { id: 'navy', label: 'Navy', color: '#0e1b35' },
+    { id: 'dark', label: 'Dark', color: '#0b0b0d' },
+    { id: 'slate', label: 'Slate', color: '#596779' },
+    { id: 'sunset', label: 'Sunset', color: '#ff6b6b' }
+  ]
   let count = $state(0)
   let hasLoaded = $state(false)
   let showConfirm = $state(false)
@@ -11,9 +25,11 @@
   let showSettings = $state(false)
   let maxLimit = $state(null)
   let step = $state(1)
+  let theme = $state('sky')
   let configValue = $state('')
   let configLimit = $state('')
   let configStep = $state('')
+  let configTheme = $state('sky')
 
   const clampValue = (value) => {
     const nonNegative = Math.max(0, value)
@@ -51,6 +67,16 @@
     return null
   }
 
+  const loadSavedTheme = () => {
+    if (typeof localStorage === 'undefined') return null
+    const saved = localStorage.getItem(STORAGE_THEME)
+    if (saved === null) return null
+    const exists = THEMES.some((t) => t.id === saved)
+    if (exists) return saved
+    localStorage.removeItem(STORAGE_THEME)
+    return null
+  }
+
   onMount(() => {
     const savedLimit = loadSavedLimit()
     if (typeof savedLimit === 'number') {
@@ -59,6 +85,10 @@
     const savedStep = loadSavedStep()
     if (typeof savedStep === 'number') {
       step = savedStep
+    }
+    const savedTheme = loadSavedTheme()
+    if (typeof savedTheme === 'string') {
+      theme = savedTheme
     }
     const savedCount = loadSavedCount()
     if (typeof savedCount === 'number') {
@@ -76,6 +106,14 @@
     }
     localStorage.setItem(STORAGE_STEP, String(step))
     localStorage.setItem(STORAGE_KEY, String(count))
+    localStorage.setItem(STORAGE_THEME, theme)
+  })
+
+  $effect(() => {
+    const root = document.documentElement
+    for (const { id } of THEMES) {
+      root.classList.toggle(`theme-${id}`, theme === id)
+    }
   })
 
   const increment = () => {
@@ -116,6 +154,7 @@
     configValue = String(count)
     configLimit = maxLimit === null ? '' : String(maxLimit)
     configStep = String(step)
+    configTheme = theme
     showSettings = true
   }
 
@@ -127,12 +166,15 @@
     const parsedValue = Number.parseInt(configValue, 10)
     const parsedLimit = configLimit === '' ? null : Number.parseInt(configLimit, 10)
     const parsedStep = Number.parseInt(configStep, 10)
+    const nextTheme = THEMES.some((t) => t.id === configTheme) ? configTheme : theme
 
     const nextLimit = Number.isFinite(parsedLimit) && parsedLimit >= 0 ? parsedLimit : null
     maxLimit = nextLimit
 
     const nextStep = Number.isFinite(parsedStep) && parsedStep > 0 ? parsedStep : step
     step = nextStep
+
+    theme = nextTheme
 
     const nextValue = Number.isFinite(parsedValue) ? parsedValue : count
     count = clampValue(nextValue)
@@ -241,6 +283,21 @@
             Step for + / -
             <input type="number" min="1" bind:value={configStep} />
           </label>
+          <div class="theme-picker">
+            <p class="theme-label">Theme</p>
+            <div class="swatch-grid" role="listbox" aria-label="Theme">
+              {#each THEMES as t}
+                <button
+                  type="button"
+                  class={`swatch ${configTheme === t.id ? 'active' : ''}`}
+                  style={`background:${t.color}`}
+                  aria-label={t.label}
+                  aria-pressed={configTheme === t.id}
+                  on:click={() => (configTheme = t.id)}
+                ></button>
+              {/each}
+            </div>
+          </div>
         </div>
         <div class="modal-actions">
           <button class="ghost" on:click={closeSettings}>Cancel</button>
