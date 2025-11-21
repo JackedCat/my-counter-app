@@ -177,6 +177,11 @@ button:focus-visible {
   gap: 10px;
 }
 
+.info-actions {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
+}
+
 .modal-title {
   margin: 0;
   font-weight: 700;
@@ -237,7 +242,6 @@ button:focus-visible {
 
 .buy-coffee:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
 }
 
 .modal-actions .ghost,

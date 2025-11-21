@@ -207,7 +207,7 @@
           Minimal counter that retains your value on this device.
           <a class="modal-link" href="https://joshuanavas.com" target="_blank" rel="noreferrer">Learn more</a>
         </p>
-        <div class="modal-actions">
+        <div class="modal-actions info-actions">
           <a class="buy-coffee" href="https://www.buymeacoffee.com/joshnvs" target="_blank" rel="noreferrer">
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path fill="currentColor" d="M11 3c0-.55228-.4477-1-1-1-.55228 0-1 .44772-1 1 0 .35778-.09872.50986-.19828.61606-.14832.15821-.36754.28572-.7723.50159l-.04537.02415c-.34513.18363-.84839.45139-1.24483.87426C6.27628 5.50986 6 6.15778 6 7c0 .55228.44772 1 1 1 .55229 0 1-.44772 1-1 0-.35778.09873-.50986.19829-.61606.14832-.15821.36754-.28572.7723-.50159l.04536-.02415c.34514-.18363.8484-.45139 1.24485-.87426C10.7237 4.49014 11 3.84222 11 3Zm5 0c0-.55228-.4477-1-1-1s-1 .44772-1 1c0 .35778-.0987.50986-.1983.61606-.1483.15821-.3675.28572-.7723.50159l-.0453.02415c-.3452.18363-.8484.45139-1.2449.87426C11.2763 5.50986 11 6.15778 11 7c0 .55228.4477 1 1 1s1-.44772 1-1c0-.35778.0987-.50986.1983-.61606.1483-.15821.3675-.28572.7723-.50159l.0454-.02415c.3451-.18363.8484-.45139 1.2448-.87426C15.7237 4.49014 16 3.84222 16 3Z"/>
@@ -215,7 +215,6 @@
             </svg>
             Buy me a coffee
           </a>
-          <button class="primary" on:click={closeInfo}>Close</button>
         </div>
         <p class="modal-foot">Created by Joshua Navas</p>
       </div>
