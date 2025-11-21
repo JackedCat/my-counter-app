@@ -101,6 +101,38 @@ button:focus-visible {
   background: #f1f5f9;
 }
 
+.link:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 10;
+}
+
+.modal {
+  width: min(360px, 100%);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  display: grid;
+  gap: 16px;
+  text-align: center;
+}
+
+.modal-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 10px;
+}
+
 @media (max-width: 520px) {
   .controls {
     grid-template-columns: 1fr 1fr;
