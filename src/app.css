@@ -146,21 +146,106 @@ button:focus-visible {
 }
 
 .modal {
-  width: min(360px, 100%);
+  width: min(460px, 100%);
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
   display: grid;
   gap: 16px;
   text-align: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
 .modal-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(120px, 1fr));
   gap: 10px;
+}
+
+.modal-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.modal-text {
+  margin: 0;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.modal-link {
+  color: #0ea5e9;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.modal-foot {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #0f172a;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.buy-coffee {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 14px;
+  padding: 14px 18px;
+  border: 1px solid #e2e8f0;
+  background: #fff9c4;
+  color: #0f172a;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.buy-coffee svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.buy-coffee:hover {
+  transform: translateY(-1px);
+}
+
+.modal-actions .ghost,
+.modal-actions .primary {
+  text-align: center;
+}
+
+.modal-actions .ghost {
+  display: inline-block;
+  border-radius: 14px;
+  padding: 14px 18px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 @media (max-width: 520px) {
