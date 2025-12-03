@@ -1,0 +1,4 @@
+# robots.txt file of https://simplecounter.usefreeapp.com/
+User-agent: *
+Disallow:
+Sitemap: https://simplecounter.usefreeapp.com/sitemap.xml
